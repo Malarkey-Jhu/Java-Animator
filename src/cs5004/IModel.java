@@ -18,7 +18,7 @@ public interface IModel {
   void addShape(String name, String type);
 
   /**
-   * add Motion to Model
+   * add Motion to Model.
    * @param name name of motion
    * @param m Motion Class 
    */
@@ -34,25 +34,25 @@ public interface IModel {
   void setCanvas(int x, int y, int w, int h);
   
   /**
-   * get x coord (leftmost pos) of canvas
+   * get x coord (leftmost pos) of canvas.
    * @return
    */
   int getX();
   
   /**
-   * get y coord (topmost pos) of canvas
+   * get y coord (topmost pos) of canvas.
    * @return
    */
   int getY();
   
   /**
-   * get width of canvas
+   * get width of canvas.
    * @return
    */
   int getW();
   
   /**
-   * get height of canvas
+   * get height of canvas.
    * @return
    */
   int getH();

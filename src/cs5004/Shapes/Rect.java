@@ -46,7 +46,8 @@ public class Rect extends AbstractShape implements Shape {
     }
     
     return String.format("<rect id='%s' x='%d' y='%d' width='%d' "
-        + "height='%d' fill='%s' visibility='visible'>***</rect>", this.name, this.getPos().getX(), this.getPos().getY(), this.w, this.h, this.color.toString());
+        + "height='%d' fill='%s' visibility='visible'>***</rect>", this.name, 
+        this.getPos().getX(), this.getPos().getY(), this.w, this.h, this.color.toString());
   }
   
   @Override

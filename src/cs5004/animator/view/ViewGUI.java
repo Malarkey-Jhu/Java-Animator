@@ -20,9 +20,6 @@ public class ViewGUI extends JFrame  implements IView, ActionListener {
   private int y = 0;
   private int width = 1000;
   private int height = 600;
-  private JMenuBar menuBar;
-  private JMenu file;
-  private JMenuItem exit;
   private IController c;
   
   /**
@@ -52,14 +49,14 @@ public class ViewGUI extends JFrame  implements IView, ActionListener {
   
   @Override
   public void display(int speed) {
-    this.menuBar = new JMenuBar();
-    this.setJMenuBar(this.menuBar);
-    this.file = new JMenu("File");
-    this.menuBar.add(this.file);
-    this.exit = new JMenuItem("Exit");
-    this.exit.setName("Quit");
-    this.exit.addActionListener(this);
-    this.file.add(this.exit);
+    JMenuBar menuBar = new JMenuBar();
+    this.setJMenuBar(menuBar);
+    JMenu file = new JMenu("File");
+    menuBar.add(file);
+    JMenuItem exit = new JMenuItem("Exit");
+    exit.setName("Quit");
+    exit.addActionListener(this);
+    file.add(exit);
     Component apanel = new APanel(c, x, y, width, height, speed);
     this.add(apanel);
     apanel.repaint();

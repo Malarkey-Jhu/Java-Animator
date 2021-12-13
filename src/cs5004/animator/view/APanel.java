@@ -72,7 +72,7 @@ public class APanel extends JPanel implements ActionListener {
       timer.stop();
     }
     this.repaint();
-    this.time+=this.deltaTime;
+    this.time += this.deltaTime;
   }
   
 }

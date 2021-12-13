@@ -56,32 +56,32 @@ public class Resize extends AbstractMotion implements IMotion {
   public String toString() {
     return String.format("Shape %s resizes from (width, height): "
         + "(%d, %d) to (width, height): (%d, %d) from time %d to time %d", 
-        this.shape.getName(), 
-        this.w1, this.h1,
-        this.w2, this.h2,
-        this.startTime, this.endTime);
+      this.shape.getName(), 
+      this.w1, this.h1,
+      this.w2, this.h2,
+      this.startTime, this.endTime);
   }
 
   @Override
   public String toSVGString() {
-      String ws  = String.format("<animate attributeType='xml' begin='%dms' "
-          + "dur='%dms' attributeName='%s' from='%d' to='%d' fill='freeze' />", 
-          this.startTime * 1000,
-          (this.endTime - this.startTime) * 1000,
-          this.shape.getType().equals("Rect") ? "width" : "rx",
-          this.w1,
-          this.w2
-       );
+    String ws  = String.format("<animate attributeType='xml' begin='%dms' "
+        + "dur='%dms' attributeName='%s' from='%d' to='%d' fill='freeze' />", 
+        this.startTime * 1000,
+        (this.endTime - this.startTime) * 1000,
+        this.shape.getType().equals("Rect") ? "width" : "rx",
+        this.w1,
+        this.w2
+     );
+    
+    String hs = String.format("<animate attributeType='xml' begin='%dms' "
+        + "dur='%dms' attributeName='%s' from='%d' to='%d' fill='freeze' />", 
+        this.startTime * 1000,
+        (this.endTime - this.startTime) * 1000,
+        this.shape.getType().equals("Rect") ? "height" : "ry",
+        this.h1,
+        this.h2
+     );
       
-      String hs = String.format("<animate attributeType='xml' begin='%dms' "
-          + "dur='%dms' attributeName='%s' from='%d' to='%d' fill='freeze' />", 
-          this.startTime * 1000,
-          (this.endTime - this.startTime) * 1000,
-          this.shape.getType().equals("Rect")? "height" : "ry",
-          this.h1,
-          this.h2
-       );
-      
-      return ws + "\n" + hs;
+    return ws + "\n" + hs;
   }
 }

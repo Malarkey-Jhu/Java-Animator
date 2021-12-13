@@ -53,7 +53,8 @@ public class Ellipse extends AbstractShape implements Shape {
     }
     
     return String.format("<ellipse id='%s' cx='%d' cy='%d' rx='%d' "
-        + "ry='%d' fill='%s' visibility='visible' >***</ellipse>", this.name, this.getPos().getX(), this.getPos().getY(), this.w, this.h, this.color.toString());
+        + "ry='%d' fill='%s' visibility='visible' >***</ellipse>", this.name, 
+        this.getPos().getX(), this.getPos().getY(), this.w, this.h, this.color.toString());
   }
   
   @Override

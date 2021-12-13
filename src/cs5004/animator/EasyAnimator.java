@@ -78,7 +78,7 @@ public class EasyAnimator {
           break;
         case "visual":
           c = new Controller(m, new ViewGUI());
-         break;
+          break;
         default:
       }
       c.start(speed);

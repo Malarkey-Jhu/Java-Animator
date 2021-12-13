@@ -30,7 +30,7 @@ public class Move extends AbstractMotion implements IMotion {
     int x = tween(t, startTime, endTime, start.getX(), end.getX());
     int y = tween(t, startTime, endTime, start.getY(), end.getY());
     
-    s.setPos(new Pos(x, y));;
+    s.setPos(new Pos(x, y));
   }
   
   @Override
@@ -63,7 +63,7 @@ public class Move extends AbstractMotion implements IMotion {
         this.shape.getType().equals("Rect")  ? "x" : "cx",
         this.start.getX(),
         this.end.getX()
-     );
+    );
     
     String ys = String.format("<animate attributeType='xml' begin='%dms' "
         + "dur='%dms' attributeName='%s' from='%d' to='%d' fill='freeze' />", 
@@ -72,7 +72,7 @@ public class Move extends AbstractMotion implements IMotion {
         this.shape.getType().equals("Rect") ? "y" : "cy",
         this.start.getY(),
         this.end.getY()
-     );
+    );
     
     return xs + "\n" + ys;
   }
