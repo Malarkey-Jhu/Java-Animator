@@ -4,18 +4,17 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import cs5004.Controller;
 import cs5004.IController;
 
-public class ViewGUI extends JFrame  implements IView, ActionListener{
+/**
+ * GUI View.
+ */
+public class ViewGUI extends JFrame  implements IView, ActionListener {
   
   private int x = 0;
   private int y = 0;
@@ -26,16 +25,27 @@ public class ViewGUI extends JFrame  implements IView, ActionListener{
   private JMenuItem exit;
   private IController c;
   
+  /**
+   * Initialize the View.
+   */
   public ViewGUI() {
     super("Animation");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
   
+  /**
+   * set canvas size.
+   * @param x x
+   * @param y y
+   * @param w width
+   * @param h height
+   */
   public void setCanvas(int x, int y, int w, int h) {
     this.setSize(w, h);
     this.setLocation(x, y);
   }
   
+  @Override
   public void addController(IController c) {
     this.c = c;
   }
@@ -63,6 +73,6 @@ public class ViewGUI extends JFrame  implements IView, ActionListener{
       System.exit(0);
     }
   }
-  
+
 
 }

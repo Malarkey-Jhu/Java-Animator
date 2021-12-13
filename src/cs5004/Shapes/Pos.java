@@ -1,9 +1,10 @@
-package cs5004.Shapes;
+package cs5004.shapes;
 /**
  * This class represents a 2D point. This point is denoted in Cartesian
  * coordinates as (x,y).
  */
 public class Pos {
+  
   private int x;
   private int y;
 
@@ -14,34 +15,45 @@ public class Pos {
    * @param y the y-coordinate of this point
    */
   public Pos(int x, int y) {
+    
     this.x = x;
     this.y = y;
   }
   
+  /**
+   * clone this pos.
+   */
   public Pos clone() {
     return new Pos(x, y);
   }
 
   /**
-   * Compute and return the Euclidean distance of this point to the origin
+   * Compute and return the Euclidean distance of this point to the origin.
    *
    * @return the euclidean distance
    */
-
   public double distToOrigin() {
     return Math.sqrt(x * x + y * y);
   }
   
+  /**
+   * set X.
+   * @param x x
+   */
   public void setX(int x) {
     this.x = x;
   }
   
+  /**
+   * set Y.
+   * @param y.
+   */
   public void setY(int y) {
     this.y = y;
   }
 
   /**
-   * Return the x-coordinate of this point
+   * Return the x-coordinate of this point.
    *
    * @return x-coordinate of this point
    */
@@ -50,7 +62,7 @@ public class Pos {
   }
 
   /**
-   * Return the y-coordinate of this point
+   * Return the y-coordinate of this point.
    *
    * @return y-coordinate of this point
    */
@@ -58,6 +70,7 @@ public class Pos {
     return y;
   }
   
+  @Override
   public String toString() {
     return "(" + x + "," + y + ")";
   }

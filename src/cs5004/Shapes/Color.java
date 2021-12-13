@@ -1,4 +1,4 @@
-package cs5004.Shapes;
+package cs5004.shapes;
 
 public class Color {
   private int r;

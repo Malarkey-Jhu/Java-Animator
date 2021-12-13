@@ -8,11 +8,13 @@ import java.util.ArrayList;
 
 import javax.swing.Timer;
 
-import cs5004.Controller;
 import cs5004.IController;
 
 import javax.swing.JPanel;
 
+/**
+ * Actual canvas.
+ */
 public class APanel extends JPanel implements ActionListener {
 
   Timer timer;
@@ -21,6 +23,15 @@ public class APanel extends JPanel implements ActionListener {
   int delay = 1000;
   double deltaTime = 1;
   
+  /**
+   * Initialize Panel.
+   * @param c controller
+   * @param x x coord of canvas
+   * @param y y coord of canvas
+   * @param w width of canvas
+   * @param h height of canvas
+   * @param speed speed of animation
+   */
   public APanel(IController c, int x, int y, int w, int h, int speed) {
     super(true);
     this.setBackground(Color.white);
@@ -35,16 +46,15 @@ public class APanel extends JPanel implements ActionListener {
     timer.start(); 
   }
   
-  
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     
-    ArrayList<cs5004.Shapes.Shape> shapes = c.getShapes(time);
+    ArrayList<cs5004.shapes.Shape> shapes = c.getShapes(time);
     
     for (int i = 0; i < shapes.size(); i++) {
-      cs5004.Shapes.Shape s = shapes.get(i);
-      if (s.getType() == "Rect") {
+      cs5004.shapes.Shape s = shapes.get(i);
+      if (s.getType().equals("Rect")) {
         g.setColor(new Color(s.getColor().getR(), s.getColor().getG(), s.getColor().getB()));
         g.fillRect(s.getPos().getX(), s.getPos().getY(), s.getW(), s.getH());
       } else {

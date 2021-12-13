@@ -2,15 +2,23 @@ package cs5004;
 
 import java.util.ArrayList;
 
-import cs5004.Shapes.Shape;
 import cs5004.animator.view.IView;
 import cs5004.animator.view.ViewGUI;
+import cs5004.shapes.Shape;
 
+/**
+ * Controller.
+ */
 public class Controller implements IController {
 
   private IView view;
   private IModel model;
   
+  /**
+   * Initialize Controller.
+   * @param m Model
+   * @param v View
+   */
   public Controller(IModel m, IView v) {
     this.model = m;
     this.view = v;
@@ -20,7 +28,8 @@ public class Controller implements IController {
   @Override
   public void start(int speed) {
     if (view instanceof ViewGUI) {
-      ((ViewGUI) view).setCanvas(this.model.getX(), this.model.getY(), this.model.getW(), this.model.getH());
+      ((ViewGUI) view).setCanvas(this.model.getX(), this.model.getY(), 
+          this.model.getW(), this.model.getH());
     }
     view.display(speed);
   }

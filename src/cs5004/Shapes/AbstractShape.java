@@ -1,5 +1,8 @@
-package cs5004.Shapes;
+package cs5004.shapes;
 
+/**
+ * AbstractShape.
+ */
 public abstract class AbstractShape implements Shape {
   protected Pos reference;
   protected Color color;
@@ -11,6 +14,10 @@ public abstract class AbstractShape implements Shape {
   protected int w;
   protected int h;
   
+  /**
+   * initialize AbstractShape.
+   * @param name name of the shape.
+   */
   public AbstractShape(String name) {
     this.name = name;
   }

@@ -1,14 +1,25 @@
-package cs5004.Motion;
+package cs5004.motion;
 
-import cs5004.Shapes.Pos;
-import cs5004.Shapes.Shape;
+import cs5004.shapes.Shape;
 
+/**
+ * Resize Motion.
+ */
 public class Resize extends AbstractMotion implements IMotion {
   private int w1;
   private int h1;
   private int w2;
   private int h2;
   
+  /**
+   * initialize Resize Motion.
+   * @param t1 t1
+   * @param t2 t2
+   * @param w1 w1
+   * @param h1 h1
+   * @param w2 w2
+   * @param h2 h2
+   */
   public Resize(int t1, int t2, int w1, int h1, int w2, int h2) {
     super(t1, t2);
     this.w1 = w1;
@@ -17,6 +28,7 @@ public class Resize extends AbstractMotion implements IMotion {
     this.h2 = h2;
   }
   
+  @Override
   public void setDeltaBytime(Shape s, double t) {
     int w = tween(t, startTime, endTime, w1, w2);
     int h = tween(t, startTime, endTime, h1, h2);
@@ -25,7 +37,7 @@ public class Resize extends AbstractMotion implements IMotion {
     s.setH(h);
   }
   
-  
+  @Override
   public void setShape(Shape s) {
     this.shape = s;
     
@@ -52,22 +64,24 @@ public class Resize extends AbstractMotion implements IMotion {
 
   @Override
   public String toSVGString() {
-      String ws  = String.format("<animate attributeType='xml' begin='%dms' dur='%dms' attributeName='%s' from='%d' to='%d' fill='freeze' />", 
-          this.startTime*1000,
+      String ws  = String.format("<animate attributeType='xml' begin='%dms' "
+          + "dur='%dms' attributeName='%s' from='%d' to='%d' fill='freeze' />", 
+          this.startTime * 1000,
           (this.endTime - this.startTime) * 1000,
-          this.shape.getType() == "Rect" ? "width" : "rx",
+          this.shape.getType().equals("Rect") ? "width" : "rx",
           this.w1,
           this.w2
        );
       
-      String hs = String.format("<animate attributeType='xml' begin='%dms' dur='%dms' attributeName='%s' from='%d' to='%d' fill='freeze' />", 
-          this.startTime*1000,
+      String hs = String.format("<animate attributeType='xml' begin='%dms' "
+          + "dur='%dms' attributeName='%s' from='%d' to='%d' fill='freeze' />", 
+          this.startTime * 1000,
           (this.endTime - this.startTime) * 1000,
-          this.shape.getType() == "Rect" ? "height" : "ry",
+          this.shape.getType().equals("Rect")? "height" : "ry",
           this.h1,
           this.h2
        );
       
-      return ws+"\n"+hs;
+      return ws + "\n" + hs;
   }
 }

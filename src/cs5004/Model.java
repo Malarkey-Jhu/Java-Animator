@@ -8,14 +8,14 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import cs5004.Motion.ChangeColor;
-import cs5004.Motion.IMotion;
-import cs5004.Motion.Move;
-import cs5004.Motion.Resize;
-import cs5004.Shapes.Ellipse;
-import cs5004.Shapes.Rect;
-import cs5004.Shapes.Shape;
+import cs5004.motion.IMotion;
+import cs5004.shapes.Ellipse;
+import cs5004.shapes.Rect;
+import cs5004.shapes.Shape;
 
+/**
+ * Model.
+ */
 public class Model implements IModel {
   
   // canvas bounding box
@@ -37,22 +37,27 @@ public class Model implements IModel {
     this.height = h;
   }
   
+  @Override
   public int getX() {
     return x;
   }
   
+  @Override
   public int getY() {
     return y;
   }
   
+  @Override
   public int getW() {
     return width;
   }
   
+  @Override
   public int getH() {
     return height;
   }
   
+  @Override
   public ArrayList<Shape> getShapeInfoBytime(double time) {
     LinkedHashMap<String, Shape> mp = new LinkedHashMap<String, Shape>();
     
@@ -79,14 +84,14 @@ public class Model implements IModel {
   
   @Override
   public void addShape(String name, String type) {
-    switch(type) {
-    case "rectangle":
-      this.allShapes.put(name, new Rect(name));
-      break;
-    case "ellipse":
-      this.allShapes.put(name, new Ellipse(name));
-      break;
-    default:
+    switch (type) {
+      case "rectangle":
+        this.allShapes.put(name, new Rect(name));
+        break;
+      case "ellipse":
+        this.allShapes.put(name, new Ellipse(name));
+        break;
+      default:
     }
   }
 
@@ -106,30 +111,36 @@ public class Model implements IModel {
     int low = 0;
     int high = this.allMotions.size() - 1;
     
-    while(low <= high) {
+    while (low <= high) {
       int mid = (low + high) / 2;
       IMotion midM = this.allMotions.get(mid);
       if (midM.getStartTime() == m.getStartTime()) {
         low = mid;
         break;
       } else if (midM.getStartTime() < m.getStartTime()) {
-        low = mid+1;
+        low = mid + 1;
       } else {
-        high = mid-1;
+        high = mid - 1;
       }
     }
     this.allMotions.add(low, m);
   }
 
+  /**
+   * get Motion by shape
+   * @param s shape
+   * @return motions that the shape has
+   */
   private List<IMotion> getMotionByShape(Shape s) {
     return this.allMotions.stream()
         .filter(m -> m.getShape().getName() == s.getName())
         .collect(Collectors.toList());
   }
   
+  @Override
   public String toSVGString() {
     String res = "";
-    res += "<svg width=\""+ width + "\" height=\""+ height +"\" version=\"1.1\"\n"
+    res += "<svg width=\"" + width + "\" height=\"" + height + "\" version=\"1.1\"\n"
         + "     xmlns=\"http://www.w3.org/2000/svg\">\n";
     
     HashMap<String, Shape> mb = new HashMap<String, Shape>();
@@ -154,11 +165,12 @@ public class Model implements IModel {
       shapeTag += "\n\n";
     }
     
-    res+=shapeTag;
+    res += shapeTag;
     res += "</svg>";
     return res;
   }
   
+  @Override
   public String toString() {
     String shapesInfo = "";
     String motionsInfo = "";
@@ -169,7 +181,7 @@ public class Model implements IModel {
     
     for (int i = 0; i < this.allMotions.size(); i++) {
       String ms = this.allMotions.get(i).toString();
-      motionsInfo+= ms + "\n";
+      motionsInfo += ms + "\n";
     }
     
     return shapesInfo + motionsInfo;
@@ -182,7 +194,13 @@ public class Model implements IModel {
 }
 
 
+/**
+ * Comparator compare by start time
+ * @author alan_pc
+ *
+ */
 class SortByStartTime implements Comparator<IMotion> {
+  @Override
   public int compare(IMotion a, IMotion b)
   {
       return a.getStartTime() - b.getStartTime();

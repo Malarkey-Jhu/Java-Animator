@@ -17,12 +17,19 @@ import cs5004.animator.util.AnimationReader;
 import cs5004.animator.view.ViewGUI;
 import cs5004.animator.view.ViewText;
 
+/**
+ * Entry file.
+ */
 public class EasyAnimator {
   
+  /**
+   * Main func.
+   * @param args user input
+   */
   public static void main(String[] args) {
     String intput = "";
     String output = "output.svg";
-    String view= "text";
+    String view = "text";
     int speed = 1;
     
     String s = String.join(" ", args);
@@ -31,20 +38,20 @@ public class EasyAnimator {
    
     while (sc.hasNext()) {
       String cmd = sc.next();
-      switch(cmd) {
-      case "-in":
-        intput = sc.next();
-        break;
-      case "-out":
-        output = sc.next();
-        break;
-      case "-view":
-        view = sc.next();
-        break;
-      case "-speed":
-        speed = sc.nextInt();
-        break;
-      default:
+      switch (cmd) {
+        case "-in":
+          intput = sc.next();
+          break;
+        case "-out":
+          output = sc.next();
+          break;
+        case "-view":
+          view = sc.next();
+          break;
+        case "-speed":
+          speed = sc.nextInt();
+          break;
+        default:
       }
     }
     
@@ -56,10 +63,11 @@ public class EasyAnimator {
     System.out.println(speed + ": speed");
     
     try {
-      IModel m = AnimationReader.parseFile(new BufferedReader(new FileReader(intput)), new AnimationBuilderImpl());
+      IModel m = AnimationReader.parseFile(new BufferedReader(new FileReader(intput)),
+          new AnimationBuilderImpl());
       IController c = new Controller(m, new ViewText(System.out));
       
-      switch(view) {
+      switch (view) {
         case "svg":
           File myFile = new File(output);
           c = new Controller(m, new ViewText(new BufferedWriter(new OutputStreamWriter(
@@ -70,6 +78,8 @@ public class EasyAnimator {
           break;
         case "visual":
           c = new Controller(m, new ViewGUI());
+         break;
+        default:
       }
       c.start(speed);
     } catch (IOException e) {
