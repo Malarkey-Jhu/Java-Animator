@@ -3,7 +3,6 @@ package cs5004;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -192,19 +191,4 @@ public class Model implements IModel {
     return this.endTime;
   }
 }
-
-
-/**
- * Comparator compare by start time
- * @author alan_pc
- *
- */
-class SortByStartTime implements Comparator<IMotion> {
-  @Override
-  public int compare(IMotion a, IMotion b)
-  {
-      return a.getStartTime() - b.getStartTime();
-  }
-}
-
 
